@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mag Estética Dental · Córdoba</title>
+<style>
+:root{--bg:#fff;--card:#fff;--tx:#0f2a44;--mut:#5a7088;--pr:#1d6fd1;--pr2:#0b3d7a;--prt:#fff;--bd:#d9e6f3;--dis:#eef3f8;--ok:#eaf4fd;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--pr)}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--card);border-bottom:1px solid var(--bd)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+.logo{font-weight:700;text-decoration:none;color:var(--tx);white-space:nowrap}
+.links{display:flex;gap:18px}
+.links a{text-decoration:none;color:var(--mut);font-size:.92rem}
+.links a:hover{color:var(--pr)}
+.btn{background:var(--pr);color:var(--prt);border:0;border-radius:999px;padding:10px 20px;font-weight:600;text-decoration:none;display:inline-block}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:default}
+@media(max-width:720px){.links{display:none}}
+.hero{background:var(--card);color:var(--tx);text-align:center;padding:64px 18px 56px;border-bottom:1px solid var(--bd)}
+.hero h1{margin:0 0 10px;font-size:clamp(2rem,6vw,3.2rem);line-height:1.15;color:var(--pr2)}
+.hero .tag{font-size:1.2rem;margin:0 0 18px;font-style:italic;color:var(--pr)}
+.hero p.sub{max-width:620px;margin:0 auto 26px;opacity:.92}
+.hero .btn{font-size:1.05rem;padding:14px 30px}
+.hero small{display:block;margin-top:14px;opacity:.85}
+section.blk{padding:54px 0}
+h2.t{margin:0 0 8px;font-size:1.7rem;text-align:center;color:var(--pr)}
+.lead{text-align:center;color:var(--pr);max-width:640px;margin:0 auto 30px}
+.about{max-width:720px;margin:0 auto;text-align:center;color:var(--pr2);font-size:1.05rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;text-align:center}
+.card .ic{font-size:1.8rem}
+.card h3{margin:6px 0 10px;font-size:1.05rem}
+.card button{background:none;border:0;color:var(--pr);font-weight:600;padding:0}
+.news{max-width:720px;margin:0 auto;display:grid;gap:12px}
+.news .card{text-align:left}
+.news time{color:var(--mut);font-size:.85rem}
+.news h3{margin:2px 0 4px}
+.news p{margin:0;color:var(--mut)}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.contact .card b{display:block;margin-bottom:4px}
+/* reserva */
+#reserva{background:var(--ok);border-bottom:1px solid var(--bd);padding:40px 0}
+#reserva[hidden]{display:none}
+.step{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-top:14px;max-width:640px;margin-left:auto;margin-right:auto}
+.step h3{margin:0 0 12px;font-size:1.05rem}
+.step h3 span{display:inline-block;background:var(--pr);color:var(--prt);width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:.85rem;margin-right:8px}
+.chips,.slots{display:flex;flex-wrap:wrap;gap:8px}
+.chip,.slot{border:1px solid var(--bd);background:var(--card);border-radius:999px;padding:8px 14px}
+.slot{border-radius:10px}
+.chip[aria-pressed="true"],.slot[aria-pressed="true"],.day[aria-pressed="true"]{background:var(--pr);color:var(--prt);border-color:var(--pr)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cal-head b{text-transform:capitalize}
+.nav{border:1px solid var(--bd);background:var(--card);border-radius:8px;width:36px;height:36px}
+.nav:disabled{opacity:.35;cursor:default}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.dow{font-size:.75rem;color:var(--mut);padding:4px 0}
+.day{border:1px solid transparent;background:var(--ok);border-radius:8px;aspect-ratio:1;min-height:38px}
+.day:disabled{background:var(--dis);color:var(--mut);opacity:.55;cursor:default}
+.blank{visibility:hidden}
+.hint{color:var(--mut);font-size:.9rem;margin:0 0 8px}
+label{display:block;font-size:.9rem;margin:10px 0 4px}
+input{width:100%;font:inherit;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx)}
+.sum{background:var(--ok);border-radius:10px;padding:10px 12px;margin:12px 0;font-size:.95rem}
+.go{width:100%;border-radius:10px;padding:13px;font-size:1rem}
+.err{color:#c0392b;font-size:.9rem;min-height:1.2em;margin:8px 0 0}
+#done{display:none}
+footer{background:var(--card);color:var(--pr2);border-top:1px solid var(--bd);text-align:center;padding:28px 18px;font-size:.9rem}
+footer a{color:var(--pr)}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="#inicio">🦷 Mag Estética Dental</a>
+  <div class="links"><a href="#nosotros">Quiénes somos</a><a href="#servicios">Servicios</a><a href="#novedades">Novedades</a><a href="#contacto">Contacto</a></div>
+  <button class="btn" data-book>Reservá tu turno</button>
+</div></nav>
+
+<header class="hero" id="inicio">
+  <h1>Mag Estética Dental</h1>
+  <p class="tag">Regalate en la vida el placer de sonreír…</p>
+  <p class="sub">Servicios de la más alta calidad, dentro de la mejor oferta de precios, con atención personalizada en Córdoba.</p>
+  <button class="btn" data-book>Reservá tu turno acá</button>
+  <small>Lunes a viernes de 9:00 a 17:00</small>
+  <svg viewBox="0 0 420 200" role="img" aria-label="Ilustración de un consultorio odontológico" style="max-width:420px;width:100%;margin-top:26px"><rect x="10" y="10" width="400" height="180" rx="16" style="fill:var(--card);stroke:var(--bd)"/><path d="M10 160H410" style="stroke:var(--bd)"/><path d="M300 10V60L250 88" style="fill:none;stroke:var(--pr2);stroke-width:5"/><ellipse cx="238" cy="96" rx="34" ry="11" style="fill:var(--pr)"/><path d="M120 128L92 80q-4-9 6-11l10-2q8-2 12 6l30 57z" style="fill:var(--pr)"/><rect x="118" y="122" width="112" height="18" rx="9" style="fill:var(--pr)"/><rect x="168" y="140" width="12" height="18" style="fill:var(--pr2)"/><rect x="135" y="156" width="82" height="8" rx="4" style="fill:var(--pr2)"/><rect x="322" y="108" width="62" height="8" rx="4" style="fill:var(--pr)"/><rect x="350" y="116" width="6" height="44" style="fill:var(--pr2)"/><path d="M50 44q-12-14 0-22 8-3 14 2 6-5 14-2 12 8 0 22-4 14-6 24-2 6-8 0-2-10-14-24z" style="fill:var(--ok);stroke:var(--pr);stroke-width:2"/></svg>
+</header>
+
+<div id="reserva" hidden>
+  <div class="wrap">
+    <h2 class="t">Reservá tu turno</h2>
+    <p class="lead">Elegí el tratamiento, el día y el horario. La duración del turno depende del tratamiento.</p>
+    <div class="step"><h3><span>1</span>¿Qué tratamiento necesitás?</h3><div class="chips" id="procs"></div></div>
+    <div class="step"><h3><span>2</span>Elegí el día</h3>
+      <div class="cal-head"><button class="nav" id="prev" aria-label="Mes anterior">‹</button><b id="month"></b><button class="nav" id="next" aria-label="Mes siguiente">›</button></div>
+      <div class="grid" id="cal"></div></div>
+    <div class="step"><h3><span>3</span>Elegí el horario</h3><p class="hint" id="slotHint"></p><div class="slots" id="slots"></div></div>
+    <div class="step" id="formSec"><h3><span>4</span>Tus datos</h3>
+      <label for="nom">Nombre y apellido</label><input id="nom" autocomplete="name">
+      <label for="tel">Teléfono / WhatsApp</label><input id="tel" type="tel" autocomplete="tel">
+      <label for="email">Correo (opcional)</label><input id="email" type="email" autocomplete="email">
+      <div class="sum" id="sum"></div>
+      <button class="btn go" id="go" disabled>Confirmar turno</button>
+      <p class="err" id="err"></p></div>
+    <div class="step" id="done"><h3>✅ ¡Turno reservado!</h3><p id="doneTxt"></p><p class="hint">Te esperamos en Marcelo T. de Alvear 935 2° “A”, Córdoba. Si necesitás cambiarlo, llamanos al <a href="tel:+543514601000">(0351) 460-1000</a>.</p></div>
+  </div>
+</div>
+
+<section class="blk" id="nosotros"><div class="wrap">
+  <h2 class="t">¡Bienvenidos a Mag Estética Dental!</h2>
+  <p class="lead">Calidad, servicio y precios</p>
+  <div class="about">
+    <p>Le brindamos servicios y productos de la más alta calidad, dentro de la mejor oferta de precios. Nuestro personal está cualificado para emplear métodos adecuados para cada trabajo, brindándole, de este modo, seguridad y confiabilidad.</p>
+    <p>Encuentre la mejor oferta en calidad, servicio y precios. Nuestra trayectoria es la mejor garantía que podemos ofrecerle, y la fidelidad de nuestros clientes es nuestra mejor carta de presentación.</p>
+  </div>
+</div></section>
+
+<section class="blk" id="servicios"><div class="wrap">
+  <h2 class="t">Servicios</h2>
+  <p class="lead">Elegí un tratamiento y reservá tu turno en pocos pasos.</p>
+  <div class="cards" id="svc"></div>
+</div></section>
+
+<section class="blk" id="novedades"><div class="wrap">
+  <h2 class="t">Novedades</h2><p class="lead">&nbsp;</p>
+  <div class="news">
+    <div class="card"><time>20.11.2011</time><h3>Preguntas y Sugerencias</h3><p>¿Le gustaría conocer más detalles sobre nuestros servicios? Por favor, no dude en contactarnos.</p></div>
+    <div class="card"><time>20.11.2011</time><h3>¡Bienvenidos a nuestro nuevo sitio web!</h3><p>Nos complace anunciar el lanzamiento de nuestro nuevo sitio web Mag Estética Dental.</p></div>
+  </div>
+</div></section>
+
+<section class="blk" id="contacto"><div class="wrap">
+  <h2 class="t">Contacto</h2>
+  <p class="lead">No dude en contactarnos para ofrecerle una atención personalizada. Estaremos complacidos de brindarle la ayuda que requiera.</p>
+  <div class="contact">
+    <div class="card"><b>📍 Dirección</b>Marcelo T. de Alvear 935 2° “A”<br>Córdoba, 5000<br><a href="https://www.google.com/maps/search/?api=1&query=Marcelo+T.+de+Alvear+935+C%C3%B3rdoba+Argentina" target="_blank" rel="noopener">Cómo llegar</a></div>
+    <div class="card"><b>📞 Teléfono</b><a href="tel:+543514601000">+54 (0351) 460-1000</a></div>
+    <div class="card"><b>✉️ Correo</b><a href="mailto:mag.esteticadental@gmail.com">mag.esteticadental@gmail.com</a></div>
+    <div class="card"><b>🕘 Horario</b>Lunes a viernes<br>de 9:00 a 17:00</div>
+  </div>
+</div></section>
+
+<footer>© Mag Estética Dental · Marcelo T. de Alvear 935 2° “A”, Córdoba · <a href="tel:+543514601000">(0351) 460-1000</a></footer>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycbzQF4PmApsxyV4agslhqqQb5m_mzFf73TZ-CjL2mfMlUGOH-HjP5QyVOJ6jo7fyNQb6/exec";
+const PROCS=["Consulta","Implantes","Prótesis","Coronas","Blanqueamiento","Ortodoncia","Endodoncia"];
+const ICONS=["🩺","🦷","😁","👑","✨","📐","🔬"];
+const OPEN=540,CLOSE=1020,STEP=30;
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,"0");
+const key=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const hm=m=>Math.floor(m/60)+":"+pad(m%60);
+const today=new Date();today.setHours(0,0,0,0);
+const minM=new Date(today.getFullYear(),today.getMonth(),1);
+const maxM=new Date(today.getFullYear(),today.getMonth()+3,1);
+let DUR={},BUSY=[],proc=null,sel=null,start=null,loadErr="",view=new Date(minM);
+
+async function load(){
+  try{
+    const to=new Date(maxM.getFullYear(),maxM.getMonth()+1,0);
+    const r=await fetch(API+"?from="+key(minM)+"&to="+key(to));
+    const j=await r.json();DUR=j.dur;BUSY=j.busy;loadErr="";
+  }catch(e){DUR={};loadErr="No pudimos cargar la agenda. Llamanos al (0351) 460-1000 para reservar."}
+  renderProcs();renderCal();renderSlots();update();
+}
+function free(d){
+  if(!proc||!DUR[proc])return[];
+  const k=key(d),now=new Date(),nm=now.getHours()*60+now.getMinutes(),du=DUR[proc],r=[];
+  for(let s=OPEN;s+du<=CLOSE;s+=STEP){
+    if(k===key(now)&&s<=nm)continue;
+    if(BUSY.some(b=>b.d===k&&s<b.e&&s+du>b.s))continue;
+    r.push(s);
+  }
+  return r;
+}
+function fmtDay(d){return d.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"})}
+function openBooking(p){
+  if(p)proc=p;
+  $("reserva").hidden=false;
+  $("reserva").scrollIntoView({behavior:"smooth",block:"start"});
+  load();
+}
+function renderServices(){
+  PROCS.forEach((p,i)=>{
+    const c=document.createElement("div");c.className="card";
+    c.innerHTML='<div class="ic">'+ICONS[i]+'</div><h3>'+p+'</h3>';
+    const b=document.createElement("button");b.textContent="Reservar turno →";b.onclick=()=>openBooking(p);
+    c.appendChild(b);$("svc").appendChild(c);
+  });
+}
+function renderProcs(){
+  $("procs").innerHTML="";
+  PROCS.filter(p=>DUR[p]).forEach(p=>{
+    const b=document.createElement("button");b.className="chip";b.textContent=p+" · "+DUR[p]+" min";b.setAttribute("aria-pressed",p===proc);
+    b.onclick=()=>{proc=p;start=null;if(sel&&!free(sel).length)sel=null;renderProcs();renderCal();renderSlots();update()};
+    $("procs").appendChild(b);
+  });
+}
+function renderCal(){
+  const y=view.getFullYear(),m=view.getMonth(),g=$("cal");
+  $("month").textContent=view.toLocaleDateString("es-AR",{month:"long",year:"numeric"});
+  $("prev").disabled=view<=minM;$("next").disabled=view>=maxM;g.innerHTML="";
+  ["L","M","M","J","V","S","D"].forEach(t=>{const e=document.createElement("div");e.className="dow";e.textContent=t;g.appendChild(e)});
+  const off=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate();
+  for(let i=0;i<off;i++){const e=document.createElement("div");e.className="blank";g.appendChild(e)}
+  for(let day=1;day<=n;day++){
+    const d=new Date(y,m,day),b=document.createElement("button");b.className="day";b.textContent=day;
+    b.disabled=!proc||d.getDay()===0||d.getDay()===6||d<today||!free(d).length;
+    b.setAttribute("aria-pressed",!!sel&&key(sel)===key(d));
+    b.onclick=()=>{sel=d;start=null;renderCal();renderSlots();update()};g.appendChild(b);
+  }
+}
+function renderSlots(){
+  const box=$("slots");box.innerHTML="";
+  if(loadErr){$("slotHint").textContent=loadErr;return}
+  if(!proc){$("slotHint").textContent="Primero elegí el tratamiento.";return}
+  if(!sel){$("slotHint").textContent="Elegí un día disponible.";return}
+  $("slotHint").textContent="Horarios libres para el "+fmtDay(sel)+":";
+  free(sel).forEach(s=>{
+    const b=document.createElement("button");b.className="slot";b.textContent=hm(s)+" – "+hm(s+DUR[proc]);
+    b.setAttribute("aria-pressed",s===start);b.onclick=()=>{start=s;renderSlots();update()};box.appendChild(b);
+  });
+}
+function update(){
+  const ok=proc&&sel&&start!==null;$("go").disabled=!ok;
+  $("sum").textContent=ok?proc+" · "+fmtDay(sel)+" · "+hm(start)+" a "+hm(start+DUR[proc])+" h":"Todavía no elegiste tratamiento, día y horario.";
+}
+$("prev").onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()-1,1);renderCal()};
+$("next").onclick=()=>{view=new Date(view.getFullYear(),view.getMonth()+1,1);renderCal()};
+document.querySelectorAll("[data-book]").forEach(b=>b.onclick=()=>openBooking());
+$("go").onclick=async()=>{
+  const nom=$("nom").value.trim(),tel=$("tel").value.trim();
+  if(nom.length<3||tel.length<6){$("err").textContent="Completá tu nombre y un teléfono de contacto.";return}
+  $("err").textContent="";$("go").disabled=true;$("go").textContent="Reservando…";
+  const msg=nom+", tu turno de "+proc+" quedó reservado para el "+fmtDay(sel)+" de "+hm(start)+" a "+hm(start+DUR[proc])+" h.";
+  try{
+    const r=await fetch(API,{method:"POST",body:JSON.stringify({proc,date:key(sel),start,name:nom,phone:tel,email:$("email").value.trim()})});
+    const j=await r.json();
+    if(!j.ok)throw new Error(j.error);
+    $("formSec").style.display="none";$("doneTxt").textContent=msg;$("done").style.display="block";
+    $("done").scrollIntoView({behavior:"smooth",block:"center"});
+  }catch(e){
+    $("err").textContent=e.message==="ocupado"?"Ese horario acaba de ser tomado. Elegí otro.":"No pudimos reservar. Probá de nuevo o llamanos al (0351) 460-1000.";
+    $("go").textContent="Confirmar turno";start=null;
+    await load();
+  }
+};
+renderServices();renderProcs();renderCal();renderSlots();update();
+</script>
+</body>
+</html>
