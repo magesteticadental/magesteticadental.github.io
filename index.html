@@ -51,7 +51,8 @@ nav .wrap{display:flex;align-items:center;gap:28px;height:68px}
 .btn.ghost:hover{background:var(--ink);color:var(--porc)}
 nav .btn{white-space:nowrap}
 @media(max-width:820px){.links{display:none}nav .btn{margin-left:auto;padding:9px 16px;font-size:.9rem}}
-@media(max-width:400px){.logo{font-size:1.05rem}}
+@media(max-width:400px){.logo{font-size:1.05rem}.wrap{padding:0 16px}.step{padding:16px 12px}.day{min-height:0}.grid{gap:3px}}
+@media(max-width:360px){nav .btn{display:none}}
 
 /* hero */
 .hero{padding:72px 0 80px;border-bottom:1px solid var(--line)}
@@ -100,11 +101,12 @@ section.blk{padding:88px 0}
 .svc p{grid-column:1;margin:0;color:var(--ink2);font-size:.97rem}
 .svc .dur{grid-column:2;grid-row:1;color:var(--ink2);font-size:.9rem;font-variant-numeric:tabular-nums}
 .svc button{grid-column:2;grid-row:2;background:none;border:0;padding:0;color:var(--acc2);font-weight:600;font-size:.95rem;text-decoration:underline;text-underline-offset:3px}
+.svc .nota{grid-column:2;grid-row:2;color:var(--ink2);font-size:.88rem;text-align:right}
 @media(max-width:760px){.svc{grid-template-columns:1fr}}
 
 /* reserva */
 #reserva{border-top:1px solid var(--line)}
-.book{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
+.book{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
 .steps{display:grid;gap:14px}
 .step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
 .step h3{font-family:Figtree,sans-serif;font-weight:600;font-size:1.05rem;display:flex;align-items:center;gap:12px;margin-bottom:16px}
@@ -118,12 +120,14 @@ section.blk{padding:88px 0}
 .chip[aria-pressed="true"],.slot[aria-pressed="true"],.day[aria-pressed="true"]{background:var(--ink);color:var(--porc);border-color:var(--ink)}
 .chip[aria-pressed="true"] small{color:#b9cbc7}
 .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.cal-head b{text-transform:capitalize;font-weight:600}
+.cal-head b{font-weight:600}
+.cal-head b::first-letter{text-transform:uppercase}
+.steps,.step{min-width:0}
 .nav{border:1px solid var(--line);background:#fff;border-radius:10px;width:38px;height:38px;font-size:1.1rem}
 .nav:disabled{opacity:.3;cursor:default}
-.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;max-width:460px}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;text-align:center;max-width:460px}
 .dow{font-size:.8rem;color:var(--ink2);padding:4px 0}
-.day{border:1px solid var(--line);background:#fff;border-radius:10px;aspect-ratio:1;min-height:38px;font-variant-numeric:tabular-nums}
+.day{border:1px solid var(--line);background:#fff;border-radius:10px;aspect-ratio:1;min-height:38px;min-width:0;padding:0;font-variant-numeric:tabular-nums}
 .day:not(:disabled):hover{border-color:var(--ink)}
 .day:disabled{background:transparent;border-color:transparent;color:#a9bab6;cursor:default}
 .blank{visibility:hidden}
@@ -144,7 +148,7 @@ input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(44,12
 .summary dd.cap::first-letter{text-transform:uppercase}
 .go{width:100%;padding:14px;font-size:1rem}
 .summary .note{font-size:.88rem;color:var(--ink2);margin:14px 0 0}
-@media(max-width:900px){.book{grid-template-columns:1fr}.summary{position:static}}
+@media(max-width:900px){.book{grid-template-columns:minmax(0,1fr)}.summary{position:static}}
 /* confirmación */
 #done{display:none;max-width:640px}
 #done .step{border-color:var(--acc);padding:32px}
@@ -204,12 +208,12 @@ footer a{color:#cfe0dc}
 </div></section>
 
 <section class="blk" id="servicios"><div class="wrap">
-  <div class="head"><h2>Tratamientos</h2><p>La duración del turno depende del tratamiento. Si no sabés cuál necesitás, empezá con una consulta.</p></div>
+  <div class="head"><h2>Tratamientos</h2><p>El primer paso es una consulta, que podés reservar online. Los tratamientos los agendamos con vos en el consultorio, según lo que necesites.</p></div>
   <ul class="svc" id="svc"></ul>
 </div></section>
 
 <section class="blk" id="reserva"><div class="wrap">
-  <div class="head"><h2>Reservá tu turno</h2><p>Elegí el tratamiento, el día y el horario. Te enviamos un recordatorio antes de tu turno.</p></div>
+  <div class="head"><h2>Reservá tu consulta</h2><p>Elegí el día y el horario. Te enviamos un recordatorio antes de tu turno. Para tratamientos ya indicados, llamanos al <a href="tel:+543514601000">(0351) 460-1000</a>.</p></div>
   <div class="book" id="bookUI">
     <div class="steps">
       <div class="step" id="s1"><h3><span>1</span>¿Qué tratamiento necesitás?</h3><div class="chips" id="procs"><p class="hint">Cargando la agenda…</p></div></div>
@@ -263,6 +267,8 @@ footer a{color:#cfe0dc}
 <script>
 const API="https://script.google.com/macros/s/AKfycbzQF4PmApsxyV4agslhqqQb5m_mzFf73TZ-CjL2mfMlUGOH-HjP5QyVOJ6jo7fyNQb6/exec";
 const PROCS=["Consulta","Implantes","Prótesis","Coronas","Blanqueamiento","Ortodoncia","Endodoncia"];
+/* tratamientos que el paciente puede reservar solo desde la página; el resto lo agenda el consultorio */
+const ONLINE=["Consulta"];
 const DESC={
   "Consulta":"Revisión completa y plan de tratamiento.",
   "Implantes":"Reemplazo de piezas perdidas con implantes.",
@@ -318,9 +324,13 @@ function renderServices(){
     li.innerHTML='<h3></h3><span class="dur"></span><p></p>';
     li.querySelector("h3").textContent=p;li.querySelector("p").textContent=DESC[p]||"";
     li.querySelector(".dur").dataset.p=p;
-    const b=document.createElement("button");b.textContent="Reservar";b.setAttribute("aria-label","Reservar turno de "+p);
-    b.onclick=()=>{pick(p);goTo("reserva")};
-    li.appendChild(b);$("svc").appendChild(li);
+    if(ONLINE.includes(p)){
+      const b=document.createElement("button");b.textContent="Reservar online";b.setAttribute("aria-label","Reservar turno de "+p);
+      b.onclick=()=>{pick(p);goTo("reserva")};li.appendChild(b);
+    }else{
+      const n=document.createElement("span");n.className="nota";n.textContent="Se agenda en el consultorio";li.appendChild(n);
+    }
+    $("svc").appendChild(li);
   });
 }
 function renderDurations(){document.querySelectorAll(".svc .dur").forEach(e=>{const d=DUR[e.dataset.p];e.textContent=d?d+" min":""})}
@@ -346,7 +356,7 @@ function renderNext(){
 function renderProcs(){
   const box=$("procs");box.innerHTML="";
   if(loadErr){box.innerHTML='<p class="hint"></p>';box.firstChild.textContent=loadErr;return}
-  PROCS.filter(p=>DUR[p]).forEach(p=>{
+  PROCS.filter(p=>DUR[p]&&ONLINE.includes(p)).forEach(p=>{
     const b=document.createElement("button");b.className="chip";b.innerHTML=p+' <small>· '+DUR[p]+' min</small>';
     b.setAttribute("aria-pressed",p===proc);b.onclick=()=>pick(p);box.appendChild(b);
   });
@@ -385,7 +395,13 @@ function update(){
   setDD("sTime",start!==null&&proc?hm(start)+" a "+hm(start+DUR[proc])+" h":"");
   $("s1").classList.toggle("ok",!!proc);$("s2").classList.toggle("ok",!!sel);$("s3").classList.toggle("ok",start!==null);
 }
-function renderAll(){renderDurations();renderNext();renderProcs();renderCal();renderSlots();update()}
+function renderAll(){
+  const disp=ONLINE.filter(p=>DUR[p]);
+  if(disp.length===1&&proc!==disp[0]){proc=disp[0];if(sel&&!free(sel).length){sel=null;start=null}}
+  /* con un solo tratamiento online no hace falta el paso de elegirlo */
+  const solo=ONLINE.length===1;$("s1").hidden=solo;
+  ["s2","s3","s4"].forEach((id,i)=>$(id).querySelector("h3 span").textContent=solo?i+1:i+2);
+  renderDurations();renderNext();renderProcs();renderCal();renderSlots();update()}
 
 /* calendario: hora de Córdoba es UTC-3 todo el año */
 function utcStamp(dateKey,mins){
