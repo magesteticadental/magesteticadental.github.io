@@ -415,6 +415,18 @@ const DESC={
   "Endodoncia":"Tratamiento de conducto para conservar la pieza."
 };
 const OPEN=540,CLOSE=1020,STEP=30;
+/* Días sin turnos online: feriados nacionales y días que el consultorio cierra.
+   Para agregar uno, sumá la fecha como "AAAA-MM-DD". */
+const FERIADOS=new Set([
+  // 2026
+  "2026-01-01","2026-02-16","2026-02-17","2026-03-23","2026-03-24","2026-04-02","2026-04-03",
+  "2026-05-01","2026-05-25","2026-06-15","2026-07-09","2026-07-10","2026-08-17",
+  "2026-10-12","2026-11-23","2026-12-07","2026-12-08","2026-12-25",
+  // 2027 (sin los días puente, que el gobierno anuncia más adelante)
+  "2027-01-01","2027-02-08","2027-02-09","2027-03-24","2027-03-26","2027-04-02",
+  "2027-05-25","2027-06-21","2027-07-09","2027-08-16","2027-10-11","2027-12-08",
+  // días que cierra el consultorio (vacaciones, etc.)
+]);
 const ADDR="Marcelo T. de Alvear 935 2° A, Córdoba";
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
@@ -435,7 +447,7 @@ async function load(){
 }
 function freeFor(p,d){
   if(!p||!DUR[p])return[];
-  if(d<today||d.getDay()===0||d.getDay()===6)return[];
+  if(d<today||d.getDay()===0||d.getDay()===6||FERIADOS.has(key(d)))return[];
   const k=key(d),now=new Date(),nm=now.getHours()*60+now.getMinutes(),du=DUR[p],r=[];
   for(let s=OPEN;s+du<=CLOSE;s+=STEP){
     if(k===key(now)&&s<=nm)continue;
